@@ -109,7 +109,7 @@ def _build_result(
     scan_mode: str,
 ) -> dict[str, Any]:
     signals = {key: bool(value) for key, value in signal_counts.items()}
-    lockin_score = compute_lockin_score(signals)
+    lockin_score = compute_lockin_score(signal_counts)
     portability_score = compute_portability_score(lockin_score)
     detected = [key for key, enabled in signals.items() if enabled]
     return {

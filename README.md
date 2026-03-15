@@ -64,12 +64,17 @@ Example output:
 
 ```text
 Repository: vllm-project/vllm
-CUDA Lock-in Score: 4
-Portability Score: 96
+CUDA Lock-in Score: 98
+Portability Score: 2
 Signals:
 - torch_cuda: True
+- cupy: True
+- cudnn: True
 - nccl: True
 - triton: True
+- cuda_malloc: True
+- cuda_memcpy: True
+- custom_kernel: True
 ```
 
 ---

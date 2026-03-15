@@ -653,8 +653,8 @@
           "vllm/distributed/device_communicators/pynccl_allocator.py"
         ]
       },
-      "lockin_score": 19,
-      "portability_score": 81,
+      "lockin_score": 98,
+      "portability_score": 2,
       "stars": 73198,
       "size": 175319,
       "fork": false,
@@ -1585,8 +1585,8 @@
           "sgl-kernel/setup_rocm.py"
         ]
       },
-      "lockin_score": 19,
-      "portability_score": 81,
+      "lockin_score": 97,
+      "portability_score": 3,
       "stars": 24532,
       "size": 95392,
       "fork": false,
@@ -1727,8 +1727,8 @@
           "server/exllamav2_kernels/setup.py"
         ]
       },
-      "lockin_score": 17,
-      "portability_score": 83,
+      "lockin_score": 68,
+      "portability_score": 32,
       "stars": 10803,
       "size": 14200,
       "fork": false,
@@ -1879,8 +1879,8 @@
           "qa/common/gen_qa_custom_ops_models.py"
         ]
       },
-      "lockin_score": 19,
-      "portability_score": 81,
+      "lockin_score": 67,
+      "portability_score": 33,
       "stars": 10431,
       "size": 39354,
       "fork": false,
@@ -2122,8 +2122,8 @@
           "op_builder/xpu/builder.py"
         ]
       },
-      "lockin_score": 17,
-      "portability_score": 83,
+      "lockin_score": 79,
+      "portability_score": 21,
       "stars": 41815,
       "size": 244881,
       "fork": false,
@@ -2173,8 +2173,8 @@
           "mii/utils.py"
         ]
       },
-      "lockin_score": 4,
-      "portability_score": 96,
+      "lockin_score": 12,
+      "portability_score": 88,
       "stars": 2101,
       "size": 6836,
       "fork": false,
@@ -2414,8 +2414,8 @@
           "src/diffusers/models/attention_dispatch.py"
         ]
       },
-      "lockin_score": 9,
-      "portability_score": 91,
+      "lockin_score": 38,
+      "portability_score": 62,
       "stars": 33051,
       "size": 93672,
       "fork": false,
@@ -2701,8 +2701,8 @@
           "ggml/src/ggml-musa/mudnn.cuh"
         ]
       },
-      "lockin_score": 11,
-      "portability_score": 89,
+      "lockin_score": 36,
+      "portability_score": 64,
       "stars": 98052,
       "size": 324974,
       "fork": false,
@@ -3864,8 +3864,8 @@
           "tests/unittest/kv_cache_manager_v2_tests/kernels.py"
         ]
       },
-      "lockin_score": 17,
-      "portability_score": 83,
+      "lockin_score": 94,
+      "portability_score": 6,
       "stars": 13102,
       "size": 1806703,
       "fork": false,
@@ -3913,8 +3913,8 @@
           "tests/python/op/test_fp8_block_matmul.py"
         ]
       },
-      "lockin_score": 5,
-      "portability_score": 95,
+      "lockin_score": 22,
+      "portability_score": 78,
       "stars": 22207,
       "size": 36177,
       "fork": false,
@@ -4533,8 +4533,8 @@
           "setup.py"
         ]
       },
-      "lockin_score": 13,
-      "portability_score": 87,
+      "lockin_score": 74,
+      "portability_score": 26,
       "stars": 41363,
       "size": 66599,
       "fork": false,
@@ -4614,8 +4614,8 @@
           "litgpt/generate/tp.py"
         ]
       },
-      "lockin_score": 7,
-      "portability_score": 93,
+      "lockin_score": 35,
+      "portability_score": 65,
       "stars": 13226,
       "size": 5654,
       "fork": false,
@@ -4670,8 +4670,8 @@
           "src/llamafactory/hparams/model_args.py"
         ]
       },
-      "lockin_score": 7,
-      "portability_score": 93,
+      "lockin_score": 19,
+      "portability_score": 81,
       "stars": 68460,
       "size": 13114,
       "fork": false,
@@ -4739,8 +4739,8 @@
           "setup.py"
         ]
       },
-      "lockin_score": 12,
-      "portability_score": 88,
+      "lockin_score": 46,
+      "portability_score": 54,
       "stars": 4858,
       "size": 7897,
       "fork": false,
@@ -4872,8 +4872,8 @@
           "autogptq_extension/marlin/marlin_repack.cuh"
         ]
       },
-      "lockin_score": 15,
-      "portability_score": 85,
+      "lockin_score": 64,
+      "portability_score": 36,
       "stars": 5033,
       "size": 8395,
       "fork": false,
@@ -4927,8 +4927,8 @@
           "setup.py"
         ]
       },
-      "lockin_score": 5,
-      "portability_score": 95,
+      "lockin_score": 25,
+      "portability_score": 75,
       "stars": 2317,
       "size": 7853,
       "fork": false,
@@ -5286,8 +5286,8 @@
           "torchao/csrc/cuda/to_sparse_semi_structured_cutlass_sm9x/to_sparse_semi_structured_cutlass_sm9x_f8.cu"
         ]
       },
-      "lockin_score": 15,
-      "portability_score": 85,
+      "lockin_score": 75,
+      "portability_score": 25,
       "stars": 2731,
       "size": 86399,
       "fork": false,
@@ -5331,8 +5331,8 @@
           "tests/test_torchscript.py"
         ]
       },
-      "lockin_score": 2,
-      "portability_score": 98,
+      "lockin_score": 6,
+      "portability_score": 94,
       "stars": 3163,
       "size": 14217,
       "fork": false,
@@ -5422,8 +5422,8 @@
           "vllm_omni/diffusion/layers/rope.py"
         ]
       },
-      "lockin_score": 9,
-      "portability_score": 91,
+      "lockin_score": 41,
+      "portability_score": 59,
       "stars": 3183,
       "size": 17652,
       "fork": false,
@@ -5468,8 +5468,8 @@
           "src/dstack/_internal/core/backends/gcp/features/tcpx.py"
         ]
       },
-      "lockin_score": 4,
-      "portability_score": 96,
+      "lockin_score": 12,
+      "portability_score": 88,
       "stars": 2063,
       "size": 125591,
       "fork": false,
@@ -5525,8 +5525,8 @@
           "fastchat/serve/lightllm_worker.py"
         ]
       },
-      "lockin_score": 5,
-      "portability_score": 95,
+      "lockin_score": 14,
+      "portability_score": 86,
       "stars": 39424,
       "size": 35345,
       "fork": false,
@@ -5634,8 +5634,8 @@
           "torchtune/modules/moe/indices.py"
         ]
       },
-      "lockin_score": 9,
-      "portability_score": 91,
+      "lockin_score": 43,
+      "portability_score": 57,
       "stars": 5703,
       "size": 65435,
       "fork": false,
@@ -5762,8 +5762,8 @@
           "unsloth/models/vision.py"
         ]
       },
-      "lockin_score": 7,
-      "portability_score": 93,
+      "lockin_score": 35,
+      "portability_score": 65,
       "stars": 54026,
       "size": 50965,
       "fork": false,
@@ -5882,8 +5882,8 @@
           "csrc/pos_kernels.cuh"
         ]
       },
-      "lockin_score": 10,
-      "portability_score": 90,
+      "lockin_score": 45,
+      "portability_score": 55,
       "stars": 7691,
       "size": 29188,
       "fork": false,
@@ -6027,8 +6027,8 @@
           "xinference/thirdparty/indextts/s2mel/modules/bigvgan/alias_free_activation/cuda/anti_alias_activation_cuda.cu"
         ]
       },
-      "lockin_score": 15,
-      "portability_score": 85,
+      "lockin_score": 61,
+      "portability_score": 39,
       "stars": 9134,
       "size": 72683,
       "fork": false,
