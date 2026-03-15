@@ -21,7 +21,9 @@ def _format_table(rows: list[dict[str, Any]]) -> list[str]:
     return lines
 
 
-def _build_observations(rows: list[dict[str, Any]]) -> list[str]:
+def _build_observations(
+    rows: list[dict[str, Any]], metadata: dict[str, Any] | None = None
+) -> list[str]:
     if not rows:
         return ["- No repositories were analyzed."]
 
@@ -29,10 +31,13 @@ def _build_observations(rows: list[dict[str, Any]]) -> list[str]:
     most_locked = max(rows, key=lambda row: row["lockin_score"])
     most_portable = max(rows, key=lambda row: row["portability_score"])
     avg_lockin = mean(row["lockin_score"] for row in rows)
+    scan_mode = (metadata or {}).get("scan_mode", "unknown")
 
     return [
-        f"- Across {len(rows)} repositories, the average lock-in score is {avg_lockin:.2f}.",
+        f"- We analyzed {len(rows)} repositories with scan mode `{scan_mode}`.",
+        f"- The average CUDA lock-in score is {avg_lockin:.2f}.",
         f"- Triton appears in {triton_count} repositories and tends to correlate with higher lock-in.",
+        f"- However, portability varies significantly across the benchmark set.",
         f"- The most locked repository in this snapshot is {most_locked['repo']} with a score of {most_locked['lockin_score']}.",
         f"- The most portable repository in this snapshot is {most_portable['repo']} with a score of {most_portable['portability_score']}.",
     ]
@@ -86,6 +91,7 @@ def generate_report(
             f"- Snapshot year: {metadata.get('snapshot_year', report_year)}",
             f"- Query: `{metadata.get('query', 'n/a')}`",
             f"- Requested limit: {metadata.get('limit', len(rows))}",
+            f"- Scan mode: `{metadata.get('scan_mode', 'n/a')}`",
             f"- Generated at: {metadata.get('generated_at', 'n/a')}",
             *summary_lines,
         ]
@@ -111,7 +117,7 @@ def generate_report(
         "",
         "## 5. Key Observations",
         "",
-        *_build_observations(rows),
+        *_build_observations(rows, metadata),
     ]
 
     destination = (

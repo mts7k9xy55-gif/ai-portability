@@ -73,6 +73,7 @@ def test_crawl_repositories_paginates_until_limit(
 
     assert [row["repo"] for row in result] == ["org/one", "org/two"]
     assert payload["limit"] == 2
+    assert payload["scan_mode"] == "manifest"
     assert payload["repositories"][1]["stars"] == 20
 
 
@@ -84,8 +85,8 @@ def test_resolve_query_uses_topic_preset() -> None:
     assert crawler.resolve_query(topic="llm") == crawler.TOPIC_QUERIES["llm"]
 
 
-def test_benchmark_topic_matches_inference_preset() -> None:
-    assert crawler.TOPIC_QUERIES["benchmark"] == crawler.TOPIC_QUERIES["inference"]
+def test_benchmark_topic_uses_curated_query_label() -> None:
+    assert crawler.TOPIC_QUERIES["benchmark"] == crawler.CURATED_BENCHMARK_QUERY
 
 
 def test_request_json_surfaces_rate_limit_guidance(monkeypatch) -> None:
@@ -156,6 +157,7 @@ def test_crawl_repositories_includes_last_updated_and_query(
     assert payload["snapshot_year"] == crawler.current_index_year()
     assert payload["query"] == crawler.TOPIC_QUERIES["llm"]
     assert payload["limit"] == 1
+    assert payload["scan_mode"] == "manifest"
     assert payload["generated_at"]
 
 
@@ -200,6 +202,51 @@ def test_crawl_repositories_falls_back_to_clone_on_rate_limit(
     result = crawler.crawl_repositories(limit=1, output_path=output)
 
     assert result[0]["scan_mode"] == "clone"
+
+
+def test_crawl_benchmark_uses_curated_repositories(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setattr(
+        crawler,
+        "fetch_curated_benchmark_repositories",
+        lambda limit=25: [
+            {
+                "full_name": "org/benchmark",
+                "size": 10,
+                "stargazers_count": 123,
+                "fork": False,
+                "html_url": "https://github.com/org/benchmark",
+                "description": "benchmark",
+                "default_branch": "main",
+                "pushed_at": "2026-03-10T10:00:00Z",
+            }
+        ],
+    )
+    monkeypatch.setattr(
+        crawler,
+        "scan_repository",
+        lambda repo, file_texts=None: {
+            "repo": repo,
+            "source": f"github:{repo}",
+            "scan_mode": "clone",
+            "signals": {"triton": True},
+            "signal_counts": {"triton": 2},
+            "detected_dependencies": ["triton"],
+            "evidence": {"triton": ["kernel.py"]},
+            "lockin_score": 3,
+            "portability_score": 97,
+        },
+    )
+
+    output = tmp_path / "benchmark.json"
+    result = crawler.crawl_repositories(
+        limit=1, output_path=output, topic="benchmark", clone_fallback=True
+    )
+    payload = json.loads(output.read_text(encoding="utf-8"))
+
+    assert result[0]["repo"] == "org/benchmark"
+    assert payload["query"] == crawler.CURATED_BENCHMARK_QUERY
+    assert payload["scan_mode"] == "clone"
+    assert payload["repositories"][0]["stars"] == 123
 
 
 def test_load_dataset_supports_legacy_list(tmp_path: Path) -> None:

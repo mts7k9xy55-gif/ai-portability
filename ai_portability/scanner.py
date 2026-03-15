@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 import tempfile
 from pathlib import Path
+from os import environ
 from subprocess import CalledProcessError, run
 from typing import Any, Mapping
 from urllib.parse import urlparse
@@ -71,12 +72,28 @@ def _read_text(path: Path) -> str:
 
 def _clone_repo(repo: str, destination: Path) -> Path:
     repo_url = f"https://github.com/{repo}.git"
+    git_env = dict(environ)
+    git_env["GIT_LFS_SKIP_SMUDGE"] = "1"
     try:
         run(
-            ["git", "clone", "--depth", "1", repo_url, str(destination)],
+            [
+                "git",
+                "-c",
+                "filter.lfs.smudge=",
+                "-c",
+                "filter.lfs.process=",
+                "-c",
+                "filter.lfs.required=false",
+                "clone",
+                "--depth",
+                "1",
+                repo_url,
+                str(destination),
+            ],
             check=True,
             capture_output=True,
             text=True,
+            env=git_env,
         )
     except CalledProcessError as exc:
         stderr = exc.stderr.strip() if exc.stderr else str(exc)

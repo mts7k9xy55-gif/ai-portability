@@ -7,6 +7,7 @@ import json
 import os
 from datetime import datetime, timezone
 from pathlib import Path
+from subprocess import CalledProcessError, run
 from typing import Any
 
 import requests
@@ -15,15 +16,44 @@ from requests import HTTPError
 from .scanner import scan_repository
 
 SEARCH_URL = "https://api.github.com/search/repositories"
+REPO_URL = "https://api.github.com/repos/{repo}"
 CONTENT_URL = "https://api.github.com/repos/{repo}/contents/{path}"
 DEFAULT_QUERY = "topic:machine-learning stars:>1000 language:python"
+CURATED_BENCHMARK_QUERY = "curated:ai-infra-benchmark-2026"
 TOPIC_QUERIES = {
     "ai": "topic:machine-learning stars:>1000 language:python",
     "llm": "topic:llm stars:>500 language:python",
     "diffusion": "topic:diffusion stars:>200 language:python",
     "inference": "topic:inference stars:>500 language:python",
-    "benchmark": "topic:inference stars:>500 language:python",
+    "benchmark": CURATED_BENCHMARK_QUERY,
 }
+CURATED_BENCHMARK_REPOS = (
+    "vllm-project/vllm",
+    "sgl-project/sglang",
+    "huggingface/text-generation-inference",
+    "triton-inference-server/server",
+    "deepspeedai/DeepSpeed",
+    "deepspeedai/DeepSpeed-MII",
+    "huggingface/diffusers",
+    "ggerganov/llama.cpp",
+    "NVIDIA/TensorRT-LLM",
+    "mlc-ai/mlc-llm",
+    "hpcaitech/ColossalAI",
+    "Lightning-AI/litgpt",
+    "hiyouga/LLaMA-Factory",
+    "NVIDIA-AI-IOT/torch2trt",
+    "AutoGPTQ/AutoGPTQ",
+    "casper-hansen/AutoAWQ",
+    "pytorch/ao",
+    "neuralmagic/deepsparse",
+    "vllm-project/vllm-omni",
+    "dstackai/dstack",
+    "lm-sys/FastChat",
+    "pytorch/torchtune",
+    "unslothai/unsloth",
+    "LMCache/LMCache",
+    "xorbitsai/inference",
+)
 DEFAULT_FILE_PATHS = (
     "requirements.txt",
     "pyproject.toml",
@@ -55,6 +85,7 @@ def write_dataset(
     snapshot_year: int,
     query: str,
     limit: int,
+    scan_mode: str,
     generated_at: str | None = None,
 ) -> Path:
     """Write a dataset with top-level snapshot metadata."""
@@ -62,6 +93,7 @@ def write_dataset(
         "snapshot_year": snapshot_year,
         "query": query,
         "limit": limit,
+        "scan_mode": scan_mode,
         "generated_at": generated_at
         or datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "repositories": repositories,
@@ -160,6 +192,34 @@ def fetch_top_repositories(limit: int = 25, query: str = DEFAULT_QUERY) -> list[
     return results[:limit]
 
 
+def fetch_repository(repo: str) -> dict[str, Any]:
+    """Fetch a single repository metadata object from the GitHub API."""
+    try:
+        response = _request_json(REPO_URL.format(repo=repo))
+        return response.json()
+    except RuntimeError:
+        if os.getenv("GITHUB_TOKEN"):
+            raise
+        try:
+            completed = run(
+                ["gh", "api", f"repos/{repo}"],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+        except (FileNotFoundError, CalledProcessError):
+            raise
+        return json.loads(completed.stdout)
+
+
+def fetch_curated_benchmark_repositories(limit: int = 25) -> list[dict[str, Any]]:
+    """Fetch repository metadata for the curated benchmark set."""
+    repositories: list[dict[str, Any]] = []
+    for repo in CURATED_BENCHMARK_REPOS[:limit]:
+        repositories.append(fetch_repository(repo))
+    return repositories
+
+
 def fetch_repo_file_texts(
     repo: str,
     branch: str | None = None,
@@ -204,37 +264,21 @@ def crawl_repositories(
     """Fetch, scan, and persist repository results."""
     resolved_query = resolve_query(query=query, topic=topic)
     results: list[dict[str, Any]] = []
-    seen: set[str] = set()
-    page = 1
-    per_page = min(max(limit * 2, 50), 100)
-
-    while len(results) < limit:
-        repos = fetch_top_repositories_page(
-            page=page, per_page=per_page, query=resolved_query
-        )
-        if not repos:
-            break
+    if topic == "benchmark" and query is None:
+        repos = fetch_curated_benchmark_repositories(limit=limit)
         for repo in repos:
-            if len(results) >= limit:
-                break
-
             full_name = repo["full_name"]
-            if full_name in seen:
-                continue
-            seen.add(full_name)
-
-            if repo.get("size", 0) > max_repo_size:
-                continue
-
-            branch = repo.get("default_branch")
-            file_texts = fetch_repo_file_texts(full_name, branch=branch)
-
-            if file_texts:
-                scan_result = scan_repository(full_name, file_texts=file_texts)
-            elif clone_fallback or file_texts is None:
+            if clone_fallback:
                 scan_result = scan_repository(full_name)
             else:
-                scan_result = scan_repository(full_name, file_texts={})
+                branch = repo.get("default_branch")
+                file_texts = fetch_repo_file_texts(full_name, branch=branch)
+                if file_texts:
+                    scan_result = scan_repository(full_name, file_texts=file_texts)
+                elif clone_fallback or file_texts is None:
+                    scan_result = scan_repository(full_name)
+                else:
+                    scan_result = scan_repository(full_name, file_texts={})
 
             scan_result["repo"] = full_name
             scan_result["stars"] = repo.get("stargazers_count", 0)
@@ -247,7 +291,54 @@ def crawl_repositories(
             )[:10]
             scan_result["query"] = resolved_query
             results.append(scan_result)
-        page += 1
+    else:
+        seen: set[str] = set()
+        page = 1
+        per_page = min(max(limit * 2, 50), 100)
+
+        while len(results) < limit:
+            repos = fetch_top_repositories_page(
+                page=page, per_page=per_page, query=resolved_query
+            )
+            if not repos:
+                break
+            for repo in repos:
+                if len(results) >= limit:
+                    break
+
+                full_name = repo["full_name"]
+                if full_name in seen:
+                    continue
+                seen.add(full_name)
+
+                if repo.get("size", 0) > max_repo_size:
+                    continue
+
+                branch = repo.get("default_branch")
+                file_texts = fetch_repo_file_texts(full_name, branch=branch)
+
+                if file_texts:
+                    scan_result = scan_repository(full_name, file_texts=file_texts)
+                elif clone_fallback or file_texts is None:
+                    scan_result = scan_repository(full_name)
+                else:
+                    scan_result = scan_repository(full_name, file_texts={})
+
+                scan_result["repo"] = full_name
+                scan_result["stars"] = repo.get("stargazers_count", 0)
+                scan_result["size"] = repo.get("size", 0)
+                scan_result["fork"] = bool(repo.get("fork", False))
+                scan_result["html_url"] = repo.get("html_url")
+                scan_result["description"] = repo.get("description")
+                scan_result["last_updated"] = (
+                    repo.get("pushed_at") or repo.get("updated_at") or ""
+                )[:10]
+                scan_result["query"] = resolved_query
+                results.append(scan_result)
+            page += 1
+
+    scan_modes = sorted({row.get("scan_mode", "unknown") for row in results})
+    dataset_scan_mode = "+".join(scan_modes) if scan_modes else "unknown"
 
     destination = Path(output_path) if output_path is not None else default_dataset_path()
     write_dataset(
@@ -256,5 +347,6 @@ def crawl_repositories(
         snapshot_year=current_index_year(),
         query=resolved_query,
         limit=limit,
+        scan_mode=dataset_scan_mode,
     )
     return results

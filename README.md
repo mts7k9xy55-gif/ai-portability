@@ -136,16 +136,16 @@ ai-portability crawl --topic llm
 Generate the canonical yearly snapshot:
 
 ```bash
-ai-portability snapshot
+ai-portability snapshot --clone-fallback
 ```
 
 Or override the preset and sample size:
 
 ```bash
-ai-portability snapshot --topic ai --limit 25 --clone-fallback
+ai-portability snapshot --topic benchmark --limit 25 --clone-fallback
 ```
 
-The canonical snapshot uses an inference-heavy benchmark query rather than a broad machine-learning query, so the resulting index is more relevant to CUDA lock-in discussions.
+The canonical snapshot uses a curated AI infra benchmark set instead of a broad machine-learning search query, so the resulting index is more relevant to CUDA lock-in discussions.
 
 This writes:
 
@@ -156,6 +156,7 @@ The dataset stores top-level metadata:
 
 - `snapshot_year`
 - `query`
+- `scan_mode`
 - `limit`
 - `generated_at`
 - `repositories`
