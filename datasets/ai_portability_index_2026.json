@@ -1,927 +1,933 @@
-[
-  {
-    "repo": "vllm-project/vllm",
-    "source": "github:vllm-project/vllm",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": true
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 1
-    },
-    "detected_dependencies": [
-      "custom_kernel"
-    ],
-    "evidence": {
-      "custom_kernel": [
-        "setup.py"
-      ]
-    },
-    "lockin_score": 4,
-    "portability_score": 96,
-    "stars": 73136,
-    "size": 175311,
-    "html_url": "https://github.com/vllm-project/vllm",
-    "description": "A high-throughput and memory-efficient inference and serving engine for LLMs",
-    "last_updated": "2026-03-15",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "hpcaitech/ColossalAI",
-    "source": "github:hpcaitech/ColossalAI",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": true
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 1
-    },
-    "detected_dependencies": [
-      "custom_kernel"
-    ],
-    "evidence": {
-      "custom_kernel": [
-        "setup.py"
-      ]
-    },
-    "lockin_score": 4,
-    "portability_score": 96,
-    "stars": 41364,
-    "size": 66599,
-    "html_url": "https://github.com/hpcaitech/ColossalAI",
-    "description": "Making large AI models cheaper, faster and more accessible",
-    "last_updated": "2026-03-09",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "sgl-project/sglang",
-    "source": "github:sgl-project/sglang",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 24493,
-    "size": 95235,
-    "html_url": "https://github.com/sgl-project/sglang",
-    "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
-    "last_updated": "2026-03-15",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "SYSTRAN/faster-whisper",
-    "source": "github:SYSTRAN/faster-whisper",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 21483,
-    "size": 40514,
-    "html_url": "https://github.com/SYSTRAN/faster-whisper",
-    "description": "Faster Whisper transcription with CTranslate2",
-    "last_updated": "2025-11-19",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "stas00/ml-engineering",
-    "source": "github:stas00/ml-engineering",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 17393,
-    "size": 11376,
-    "html_url": "https://github.com/stas00/ml-engineering",
-    "description": "Machine Learning Engineering Open Book",
-    "last_updated": "2026-03-11",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "GeeeekExplorer/nano-vllm",
-    "source": "github:GeeeekExplorer/nano-vllm",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": true,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 1,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [
-      "triton"
-    ],
-    "evidence": {
-      "triton": [
-        "pyproject.toml"
-      ]
-    },
-    "lockin_score": 3,
-    "portability_score": 97,
-    "stars": 12215,
-    "size": 435,
-    "html_url": "https://github.com/GeeeekExplorer/nano-vllm",
-    "description": "Nano vLLM",
-    "last_updated": "2025-11-03",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "huggingface/text-generation-inference",
-    "source": "github:huggingface/text-generation-inference",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 10804,
-    "size": 14200,
-    "html_url": "https://github.com/huggingface/text-generation-inference",
-    "description": "Large Language Model Text Generation Inference",
-    "last_updated": "2026-01-08",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "triton-inference-server/server",
-    "source": "github:triton-inference-server/server",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 10431,
-    "size": 39354,
-    "html_url": "https://github.com/triton-inference-server/server",
-    "description": "The Triton Inference Server provides an optimized cloud and edge inferencing solution. ",
-    "last_updated": "2026-03-14",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "xorbitsai/inference",
-    "source": "github:xorbitsai/inference",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 9133,
-    "size": 72585,
-    "html_url": "https://github.com/xorbitsai/inference",
-    "description": "Swap GPT for any LLM by changing a single line of code. Xinference lets you run open-source, speech, and multimodal models on cloud, on-prem, or your laptop \u2014 all through one unified, production-ready inference API.",
-    "last_updated": "2026-03-15",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "oumi-ai/oumi",
-    "source": "github:oumi-ai/oumi",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 8908,
-    "size": 121130,
-    "html_url": "https://github.com/oumi-ai/oumi",
-    "description": "Easily fine-tune, evaluate and deploy gpt-oss, Qwen3, DeepSeek-R1, or any open source LLM / VLM!",
-    "last_updated": "2026-03-13",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "LMCache/LMCache",
-    "source": "github:LMCache/LMCache",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 7688,
-    "size": 29188,
-    "html_url": "https://github.com/LMCache/LMCache",
-    "description": "Supercharge Your LLM with the Fastest KV Cache Layer",
-    "last_updated": "2026-03-15",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB",
-    "source": "github:Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 7501,
-    "size": 38214,
-    "html_url": "https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB",
-    "description": " \ud83d\udc8e1MB lightweight face detection model  (1MB\u8f7b\u91cf\u7ea7\u4eba\u8138\u68c0\u6d4b\u6a21\u578b)",
-    "last_updated": "2023-12-29",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "superduper-io/superduper",
-    "source": "github:superduper-io/superduper",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 5262,
-    "size": 77424,
-    "html_url": "https://github.com/superduper-io/superduper",
-    "description": "Superduper: End-to-end framework for building custom AI applications and agents.",
-    "last_updated": "2025-09-01",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "AutoGPTQ/AutoGPTQ",
-    "source": "github:AutoGPTQ/AutoGPTQ",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": true,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": true,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 3,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 2,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [
-      "torch_cuda",
-      "triton"
-    ],
-    "evidence": {
-      "torch_cuda": [
-        "setup.py"
+{
+  "snapshot_year": 2026,
+  "query": "topic:inference stars:>500 language:python",
+  "limit": 25,
+  "generated_at": "2026-03-15T21:13:00+00:00",
+  "repositories": [
+    {
+      "repo": "vllm-project/vllm",
+      "source": "github:vllm-project/vllm",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": true
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 1
+      },
+      "detected_dependencies": [
+        "custom_kernel"
       ],
-      "triton": [
-        "setup.py"
-      ]
+      "evidence": {
+        "custom_kernel": [
+          "setup.py"
+        ]
+      },
+      "lockin_score": 4,
+      "portability_score": 96,
+      "stars": 73136,
+      "size": 175311,
+      "html_url": "https://github.com/vllm-project/vllm",
+      "description": "A high-throughput and memory-efficient inference and serving engine for LLMs",
+      "last_updated": "2026-03-15",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "lockin_score": 5,
-    "portability_score": 95,
-    "stars": 5034,
-    "size": 8395,
-    "html_url": "https://github.com/AutoGPTQ/AutoGPTQ",
-    "description": "An easy-to-use LLMs quantization package with user-friendly apis, based on GPTQ algorithm.",
-    "last_updated": "2025-04-11",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "tencentmusic/cube-studio",
-    "source": "github:tencentmusic/cube-studio",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 4884,
-    "size": 152362,
-    "html_url": "https://github.com/tencentmusic/cube-studio",
-    "description": "cube studio\u5f00\u6e90\u4e91\u539f\u751f\u4e00\u7ad9\u5f0f\u673a\u5668\u5b66\u4e60/\u6df1\u5ea6\u5b66\u4e60/\u5927\u6a21\u578bAI\u5e73\u53f0\uff0cmlops\u7b97\u6cd5\u94fe\u8def\u5168\u6d41\u7a0b\uff0c\u7b97\u529b\u79df\u8d41\u5e73\u53f0\uff0cnotebook\u5728\u7ebf\u5f00\u53d1\uff0c\u62d6\u62c9\u62fd\u4efb\u52a1\u6d41pipeline\u7f16\u6392\uff0c\u591a\u673a\u591a\u5361\u5206\u5e03\u5f0f\u8bad\u7ec3\uff0c\u8d85\u53c2\u641c\u7d22\uff0c\u63a8\u7406\u670d\u52a1VGPU\u865a\u62df\u5316\uff0c\u8fb9\u7f18\u8ba1\u7b97\uff0c\u6807\u6ce8\u5e73\u53f0\u81ea\u52a8\u5316\u6807\u6ce8\uff0cdeepseek\u7b49\u5927\u6a21\u578bsft\u5fae\u8c03/\u5956\u52b1\u6a21\u578b/\u5f3a\u5316\u5b66\u4e60\u8bad\u7ec3\uff0cvllm/ollama/mindie\u5927\u6a21\u578b\u591a\u673a\u63a8\u7406\uff0c\u79c1\u6709\u77e5\u8bc6\u5e93\uff0cAI\u6a21\u578b\u5e02\u573a\uff0c\u652f\u6301\u56fd\u4ea7cpu/gpu/npu \u6607\u817e\u751f\u6001\uff0c\u652f\u6301RDMA\uff0c\u652f\u6301pytorch/tf/mxnet/deepspeed/paddle/colossalai/horovod/ray/volcano\u7b49\u5206\u5e03\u5f0f",
-    "last_updated": "2026-02-06",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "NVIDIA-AI-IOT/torch2trt",
-    "source": "github:NVIDIA-AI-IOT/torch2trt",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": true
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 1
-    },
-    "detected_dependencies": [
-      "custom_kernel"
-    ],
-    "evidence": {
-      "custom_kernel": [
-        "setup.py"
-      ]
-    },
-    "lockin_score": 4,
-    "portability_score": 96,
-    "stars": 4858,
-    "size": 7897,
-    "html_url": "https://github.com/NVIDIA-AI-IOT/torch2trt",
-    "description": "An easy to use PyTorch to TensorRT converter",
-    "last_updated": "2024-08-17",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "gpustack/gpustack",
-    "source": "github:gpustack/gpustack",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 4640,
-    "size": 181937,
-    "html_url": "https://github.com/gpustack/gpustack",
-    "description": "Performance-optimized AI inference on your GPUs. Unlock superior throughput by selecting and tuning engines like vLLM or SGLang.",
-    "last_updated": "2026-03-14",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "PaddlePaddle/FastDeploy",
-    "source": "github:PaddlePaddle/FastDeploy",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": true,
-      "cudnn": false,
-      "nccl": false,
-      "triton": true,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
-    },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 1,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 1,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
-    },
-    "detected_dependencies": [
-      "cupy",
-      "triton"
-    ],
-    "evidence": {
-      "cupy": [
-        "requirements.txt"
+    {
+      "repo": "hpcaitech/ColossalAI",
+      "source": "github:hpcaitech/ColossalAI",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": true
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 1
+      },
+      "detected_dependencies": [
+        "custom_kernel"
       ],
-      "triton": [
-        "requirements.txt"
-      ]
+      "evidence": {
+        "custom_kernel": [
+          "setup.py"
+        ]
+      },
+      "lockin_score": 4,
+      "portability_score": 96,
+      "stars": 41364,
+      "size": 66599,
+      "html_url": "https://github.com/hpcaitech/ColossalAI",
+      "description": "Making large AI models cheaper, faster and more accessible",
+      "last_updated": "2026-03-09",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "lockin_score": 5,
-    "portability_score": 95,
-    "stars": 3659,
-    "size": 62888,
-    "html_url": "https://github.com/PaddlePaddle/FastDeploy",
-    "description": "High-performance Inference and Deployment Toolkit for LLMs and VLMs based on PaddlePaddle",
-    "last_updated": "2026-03-14",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "huggingface/optimum",
-    "source": "github:huggingface/optimum",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
+    {
+      "repo": "sgl-project/sglang",
+      "source": "github:sgl-project/sglang",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 24493,
+      "size": 95235,
+      "html_url": "https://github.com/sgl-project/sglang",
+      "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
+      "last_updated": "2026-03-15",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
+    {
+      "repo": "SYSTRAN/faster-whisper",
+      "source": "github:SYSTRAN/faster-whisper",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 21483,
+      "size": 40514,
+      "html_url": "https://github.com/SYSTRAN/faster-whisper",
+      "description": "Faster Whisper transcription with CTranslate2",
+      "last_updated": "2025-11-19",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 3326,
-    "size": 5815,
-    "html_url": "https://github.com/huggingface/optimum",
-    "description": "\ud83d\ude80 Accelerate inference and training of \ud83e\udd17 Transformers, Diffusers, TIMM and Sentence Transformers with easy to use hardware optimization tools",
-    "last_updated": "2026-03-13",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "neuralmagic/deepsparse",
-    "source": "github:neuralmagic/deepsparse",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
+    {
+      "repo": "stas00/ml-engineering",
+      "source": "github:stas00/ml-engineering",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 17393,
+      "size": 11376,
+      "html_url": "https://github.com/stas00/ml-engineering",
+      "description": "Machine Learning Engineering Open Book",
+      "last_updated": "2026-03-11",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
+    {
+      "repo": "GeeeekExplorer/nano-vllm",
+      "source": "github:GeeeekExplorer/nano-vllm",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": true,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 1,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [
+        "triton"
+      ],
+      "evidence": {
+        "triton": [
+          "pyproject.toml"
+        ]
+      },
+      "lockin_score": 3,
+      "portability_score": 97,
+      "stars": 12215,
+      "size": 435,
+      "html_url": "https://github.com/GeeeekExplorer/nano-vllm",
+      "description": "Nano vLLM",
+      "last_updated": "2025-11-03",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 3163,
-    "size": 14217,
-    "html_url": "https://github.com/neuralmagic/deepsparse",
-    "description": "Sparsity-aware deep learning inference runtime for CPUs",
-    "last_updated": "2025-06-02",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "vllm-project/vllm-omni",
-    "source": "github:vllm-project/vllm-omni",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
+    {
+      "repo": "huggingface/text-generation-inference",
+      "source": "github:huggingface/text-generation-inference",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 10804,
+      "size": 14200,
+      "html_url": "https://github.com/huggingface/text-generation-inference",
+      "description": "Large Language Model Text Generation Inference",
+      "last_updated": "2026-01-08",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
+    {
+      "repo": "triton-inference-server/server",
+      "source": "github:triton-inference-server/server",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 10431,
+      "size": 39354,
+      "html_url": "https://github.com/triton-inference-server/server",
+      "description": "The Triton Inference Server provides an optimized cloud and edge inferencing solution. ",
+      "last_updated": "2026-03-14",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 3136,
-    "size": 17622,
-    "html_url": "https://github.com/vllm-project/vllm-omni",
-    "description": "A framework for efficient model inference with omni-modality models",
-    "last_updated": "2026-03-15",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "pytorch/ao",
-    "source": "github:pytorch/ao",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": true
+    {
+      "repo": "xorbitsai/inference",
+      "source": "github:xorbitsai/inference",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 9133,
+      "size": 72585,
+      "html_url": "https://github.com/xorbitsai/inference",
+      "description": "Swap GPT for any LLM by changing a single line of code. Xinference lets you run open-source, speech, and multimodal models on cloud, on-prem, or your laptop \u2014 all through one unified, production-ready inference API.",
+      "last_updated": "2026-03-15",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 1
+    {
+      "repo": "oumi-ai/oumi",
+      "source": "github:oumi-ai/oumi",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 8908,
+      "size": 121130,
+      "html_url": "https://github.com/oumi-ai/oumi",
+      "description": "Easily fine-tune, evaluate and deploy gpt-oss, Qwen3, DeepSeek-R1, or any open source LLM / VLM!",
+      "last_updated": "2026-03-13",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "detected_dependencies": [
-      "custom_kernel"
-    ],
-    "evidence": {
-      "custom_kernel": [
-        "setup.py"
-      ]
+    {
+      "repo": "LMCache/LMCache",
+      "source": "github:LMCache/LMCache",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 7688,
+      "size": 29188,
+      "html_url": "https://github.com/LMCache/LMCache",
+      "description": "Supercharge Your LLM with the Fastest KV Cache Layer",
+      "last_updated": "2026-03-15",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "lockin_score": 4,
-    "portability_score": 96,
-    "stars": 2730,
-    "size": 86399,
-    "html_url": "https://github.com/pytorch/ao",
-    "description": "PyTorch native quantization and sparsity for training and inference",
-    "last_updated": "2026-03-15",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "deepspeedai/DeepSpeed-MII",
-    "source": "github:deepspeedai/DeepSpeed-MII",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
+    {
+      "repo": "Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB",
+      "source": "github:Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 7501,
+      "size": 38214,
+      "html_url": "https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB",
+      "description": " \ud83d\udc8e1MB lightweight face detection model  (1MB\u8f7b\u91cf\u7ea7\u4eba\u8138\u68c0\u6d4b\u6a21\u578b)",
+      "last_updated": "2023-12-29",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
+    {
+      "repo": "superduper-io/superduper",
+      "source": "github:superduper-io/superduper",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 5262,
+      "size": 77424,
+      "html_url": "https://github.com/superduper-io/superduper",
+      "description": "Superduper: End-to-end framework for building custom AI applications and agents.",
+      "last_updated": "2025-09-01",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 2101,
-    "size": 6836,
-    "html_url": "https://github.com/deepspeedai/DeepSpeed-MII",
-    "description": "MII makes low-latency and high-throughput inference possible, powered by DeepSpeed.",
-    "last_updated": "2025-06-30",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "dstackai/dstack",
-    "source": "github:dstackai/dstack",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
+    {
+      "repo": "AutoGPTQ/AutoGPTQ",
+      "source": "github:AutoGPTQ/AutoGPTQ",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": true,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": true,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 3,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 2,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [
+        "torch_cuda",
+        "triton"
+      ],
+      "evidence": {
+        "torch_cuda": [
+          "setup.py"
+        ],
+        "triton": [
+          "setup.py"
+        ]
+      },
+      "lockin_score": 5,
+      "portability_score": 95,
+      "stars": 5034,
+      "size": 8395,
+      "html_url": "https://github.com/AutoGPTQ/AutoGPTQ",
+      "description": "An easy-to-use LLMs quantization package with user-friendly apis, based on GPTQ algorithm.",
+      "last_updated": "2025-04-11",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
+    {
+      "repo": "tencentmusic/cube-studio",
+      "source": "github:tencentmusic/cube-studio",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 4884,
+      "size": 152362,
+      "html_url": "https://github.com/tencentmusic/cube-studio",
+      "description": "cube studio\u5f00\u6e90\u4e91\u539f\u751f\u4e00\u7ad9\u5f0f\u673a\u5668\u5b66\u4e60/\u6df1\u5ea6\u5b66\u4e60/\u5927\u6a21\u578bAI\u5e73\u53f0\uff0cmlops\u7b97\u6cd5\u94fe\u8def\u5168\u6d41\u7a0b\uff0c\u7b97\u529b\u79df\u8d41\u5e73\u53f0\uff0cnotebook\u5728\u7ebf\u5f00\u53d1\uff0c\u62d6\u62c9\u62fd\u4efb\u52a1\u6d41pipeline\u7f16\u6392\uff0c\u591a\u673a\u591a\u5361\u5206\u5e03\u5f0f\u8bad\u7ec3\uff0c\u8d85\u53c2\u641c\u7d22\uff0c\u63a8\u7406\u670d\u52a1VGPU\u865a\u62df\u5316\uff0c\u8fb9\u7f18\u8ba1\u7b97\uff0c\u6807\u6ce8\u5e73\u53f0\u81ea\u52a8\u5316\u6807\u6ce8\uff0cdeepseek\u7b49\u5927\u6a21\u578bsft\u5fae\u8c03/\u5956\u52b1\u6a21\u578b/\u5f3a\u5316\u5b66\u4e60\u8bad\u7ec3\uff0cvllm/ollama/mindie\u5927\u6a21\u578b\u591a\u673a\u63a8\u7406\uff0c\u79c1\u6709\u77e5\u8bc6\u5e93\uff0cAI\u6a21\u578b\u5e02\u573a\uff0c\u652f\u6301\u56fd\u4ea7cpu/gpu/npu \u6607\u817e\u751f\u6001\uff0c\u652f\u6301RDMA\uff0c\u652f\u6301pytorch/tf/mxnet/deepspeed/paddle/colossalai/horovod/ray/volcano\u7b49\u5206\u5e03\u5f0f",
+      "last_updated": "2026-02-06",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 2063,
-    "size": 125591,
-    "html_url": "https://github.com/dstackai/dstack",
-    "description": "dstack is an open-source control plane for running development, training, and inference jobs on GPUs\u2014across hyperscalers, neoclouds, or on-prem.",
-    "last_updated": "2026-03-13",
-    "query": "topic:inference stars:>500 language:python"
-  },
-  {
-    "repo": "tobegit3hub/tensorflow_template_application",
-    "source": "github:tobegit3hub/tensorflow_template_application",
-    "scan_mode": "manifest",
-    "signals": {
-      "torch_cuda": false,
-      "cupy": false,
-      "cudnn": false,
-      "nccl": false,
-      "triton": false,
-      "cuda_malloc": false,
-      "cuda_memcpy": false,
-      "custom_kernel": false
+    {
+      "repo": "NVIDIA-AI-IOT/torch2trt",
+      "source": "github:NVIDIA-AI-IOT/torch2trt",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": true
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 1
+      },
+      "detected_dependencies": [
+        "custom_kernel"
+      ],
+      "evidence": {
+        "custom_kernel": [
+          "setup.py"
+        ]
+      },
+      "lockin_score": 4,
+      "portability_score": 96,
+      "stars": 4858,
+      "size": 7897,
+      "html_url": "https://github.com/NVIDIA-AI-IOT/torch2trt",
+      "description": "An easy to use PyTorch to TensorRT converter",
+      "last_updated": "2024-08-17",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "signal_counts": {
-      "torch_cuda": 0,
-      "cupy": 0,
-      "cudnn": 0,
-      "nccl": 0,
-      "triton": 0,
-      "cuda_malloc": 0,
-      "cuda_memcpy": 0,
-      "custom_kernel": 0
+    {
+      "repo": "gpustack/gpustack",
+      "source": "github:gpustack/gpustack",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 4640,
+      "size": 181937,
+      "html_url": "https://github.com/gpustack/gpustack",
+      "description": "Performance-optimized AI inference on your GPUs. Unlock superior throughput by selecting and tuning engines like vLLM or SGLang.",
+      "last_updated": "2026-03-14",
+      "query": "topic:inference stars:>500 language:python"
     },
-    "detected_dependencies": [],
-    "evidence": {},
-    "lockin_score": 0,
-    "portability_score": 100,
-    "stars": 1880,
-    "size": 46958,
-    "html_url": "https://github.com/tobegit3hub/tensorflow_template_application",
-    "description": "TensorFlow template application for deep learning",
-    "last_updated": "2023-07-05",
-    "query": "topic:inference stars:>500 language:python"
-  }
-]
+    {
+      "repo": "PaddlePaddle/FastDeploy",
+      "source": "github:PaddlePaddle/FastDeploy",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": true,
+        "cudnn": false,
+        "nccl": false,
+        "triton": true,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 1,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 1,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [
+        "cupy",
+        "triton"
+      ],
+      "evidence": {
+        "cupy": [
+          "requirements.txt"
+        ],
+        "triton": [
+          "requirements.txt"
+        ]
+      },
+      "lockin_score": 5,
+      "portability_score": 95,
+      "stars": 3659,
+      "size": 62888,
+      "html_url": "https://github.com/PaddlePaddle/FastDeploy",
+      "description": "High-performance Inference and Deployment Toolkit for LLMs and VLMs based on PaddlePaddle",
+      "last_updated": "2026-03-14",
+      "query": "topic:inference stars:>500 language:python"
+    },
+    {
+      "repo": "huggingface/optimum",
+      "source": "github:huggingface/optimum",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 3326,
+      "size": 5815,
+      "html_url": "https://github.com/huggingface/optimum",
+      "description": "\ud83d\ude80 Accelerate inference and training of \ud83e\udd17 Transformers, Diffusers, TIMM and Sentence Transformers with easy to use hardware optimization tools",
+      "last_updated": "2026-03-13",
+      "query": "topic:inference stars:>500 language:python"
+    },
+    {
+      "repo": "neuralmagic/deepsparse",
+      "source": "github:neuralmagic/deepsparse",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 3163,
+      "size": 14217,
+      "html_url": "https://github.com/neuralmagic/deepsparse",
+      "description": "Sparsity-aware deep learning inference runtime for CPUs",
+      "last_updated": "2025-06-02",
+      "query": "topic:inference stars:>500 language:python"
+    },
+    {
+      "repo": "vllm-project/vllm-omni",
+      "source": "github:vllm-project/vllm-omni",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 3136,
+      "size": 17622,
+      "html_url": "https://github.com/vllm-project/vllm-omni",
+      "description": "A framework for efficient model inference with omni-modality models",
+      "last_updated": "2026-03-15",
+      "query": "topic:inference stars:>500 language:python"
+    },
+    {
+      "repo": "pytorch/ao",
+      "source": "github:pytorch/ao",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": true
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 1
+      },
+      "detected_dependencies": [
+        "custom_kernel"
+      ],
+      "evidence": {
+        "custom_kernel": [
+          "setup.py"
+        ]
+      },
+      "lockin_score": 4,
+      "portability_score": 96,
+      "stars": 2730,
+      "size": 86399,
+      "html_url": "https://github.com/pytorch/ao",
+      "description": "PyTorch native quantization and sparsity for training and inference",
+      "last_updated": "2026-03-15",
+      "query": "topic:inference stars:>500 language:python"
+    },
+    {
+      "repo": "deepspeedai/DeepSpeed-MII",
+      "source": "github:deepspeedai/DeepSpeed-MII",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 2101,
+      "size": 6836,
+      "html_url": "https://github.com/deepspeedai/DeepSpeed-MII",
+      "description": "MII makes low-latency and high-throughput inference possible, powered by DeepSpeed.",
+      "last_updated": "2025-06-30",
+      "query": "topic:inference stars:>500 language:python"
+    },
+    {
+      "repo": "dstackai/dstack",
+      "source": "github:dstackai/dstack",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 2063,
+      "size": 125591,
+      "html_url": "https://github.com/dstackai/dstack",
+      "description": "dstack is an open-source control plane for running development, training, and inference jobs on GPUs\u2014across hyperscalers, neoclouds, or on-prem.",
+      "last_updated": "2026-03-13",
+      "query": "topic:inference stars:>500 language:python"
+    },
+    {
+      "repo": "tobegit3hub/tensorflow_template_application",
+      "source": "github:tobegit3hub/tensorflow_template_application",
+      "scan_mode": "manifest",
+      "signals": {
+        "torch_cuda": false,
+        "cupy": false,
+        "cudnn": false,
+        "nccl": false,
+        "triton": false,
+        "cuda_malloc": false,
+        "cuda_memcpy": false,
+        "custom_kernel": false
+      },
+      "signal_counts": {
+        "torch_cuda": 0,
+        "cupy": 0,
+        "cudnn": 0,
+        "nccl": 0,
+        "triton": 0,
+        "cuda_malloc": 0,
+        "cuda_memcpy": 0,
+        "custom_kernel": 0
+      },
+      "detected_dependencies": [],
+      "evidence": {},
+      "lockin_score": 0,
+      "portability_score": 100,
+      "stars": 1880,
+      "size": 46958,
+      "html_url": "https://github.com/tobegit3hub/tensorflow_template_application",
+      "description": "TensorFlow template application for deep learning",
+      "last_updated": "2023-07-05",
+      "query": "topic:inference stars:>500 language:python"
+    }
+  ]
+}

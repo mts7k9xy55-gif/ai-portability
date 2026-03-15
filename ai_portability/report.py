@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from statistics import mean, median
 from typing import Any
 
-from .crawler import current_index_year, default_report_path
+from .crawler import current_index_year, default_report_path, load_dataset
 
 
 def _format_table(rows: list[dict[str, Any]]) -> list[str]:
@@ -60,7 +59,7 @@ def generate_report(
 ) -> Path:
     """Generate a markdown report from a dataset file."""
     dataset = Path(dataset_path)
-    rows: list[dict[str, Any]] = json.loads(dataset.read_text(encoding="utf-8"))
+    metadata, rows = load_dataset(dataset)
     top_lockin = sorted(rows, key=lambda row: row["lockin_score"], reverse=True)[:20]
     top_portability = sorted(
         rows, key=lambda row: row["portability_score"], reverse=True
@@ -70,28 +69,43 @@ def generate_report(
     avg_portability = mean(row["portability_score"] for row in rows) if rows else 0
     median_lockin = median(row["lockin_score"] for row in rows) if rows else 0
     median_portability = median(row["portability_score"] for row in rows) if rows else 0
-    report_year = "".join(ch for ch in dataset.stem if ch.isdigit()) or str(current_index_year())
+    report_year = str(
+        metadata.get("snapshot_year")
+        or "".join(ch for ch in dataset.stem if ch.isdigit())
+        or current_index_year()
+    )
+    summary_lines = [
+        f"- Repositories analyzed: {len(rows)}",
+        f"- Average Lock-in Score: {avg_lockin:.2f}",
+        f"- Median Lock-in Score: {median_lockin:.2f}",
+        f"- Average Portability Score: {avg_portability:.2f}",
+        f"- Median Portability Score: {median_portability:.2f}",
+    ]
+    if metadata:
+        summary_lines = [
+            f"- Snapshot year: {metadata.get('snapshot_year', report_year)}",
+            f"- Query: `{metadata.get('query', 'n/a')}`",
+            f"- Requested limit: {metadata.get('limit', len(rows))}",
+            f"- Generated at: {metadata.get('generated_at', 'n/a')}",
+            *summary_lines,
+        ]
 
     content: list[str] = [
         f"# AI CUDA Lock-in Report {report_year}",
         "",
-        "## 1. Top 20 Most Locked AI Repos",
+        "## 1. Top 20 Most Locked Repositories",
         "",
         *_format_table(top_lockin),
         "",
-        "## 2. Top 20 Most Portable AI Repos",
+        "## 2. Top 20 Most Portable Repositories",
         "",
         *_format_table(top_portability),
         "",
         "## 3. Summary Stats",
         "",
-        f"- Repositories analyzed: {len(rows)}",
-        f"- Average lock-in score: {avg_lockin:.2f}",
-        f"- Median lock-in score: {median_lockin:.2f}",
-        f"- Average portability score: {avg_portability:.2f}",
-        f"- Median portability score: {median_portability:.2f}",
+        *summary_lines,
         "",
-        "## 4. Distribution",
+        "## 4. Lock-in Distribution",
         "",
         *_distribution_lines(rows),
         "",

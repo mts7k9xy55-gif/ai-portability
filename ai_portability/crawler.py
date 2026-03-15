@@ -34,6 +34,44 @@ DEFAULT_FILE_PATHS = (
 )
 
 
+def load_dataset(path: str | Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    """Load a dataset file and normalize legacy list-only payloads."""
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    if isinstance(payload, list):
+        return {}, payload
+    if isinstance(payload, dict):
+        repositories = payload.get("repositories", [])
+        if not isinstance(repositories, list):
+            raise ValueError("Dataset 'repositories' field must be a list.")
+        metadata = {key: value for key, value in payload.items() if key != "repositories"}
+        return metadata, repositories
+    raise ValueError("Dataset must be either a list of repositories or an object.")
+
+
+def write_dataset(
+    path: str | Path,
+    repositories: list[dict[str, Any]],
+    *,
+    snapshot_year: int,
+    query: str,
+    limit: int,
+    generated_at: str | None = None,
+) -> Path:
+    """Write a dataset with top-level snapshot metadata."""
+    payload = {
+        "snapshot_year": snapshot_year,
+        "query": query,
+        "limit": limit,
+        "generated_at": generated_at
+        or datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "repositories": repositories,
+    }
+    destination = Path(path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    return destination
+
+
 def _github_headers() -> dict[str, str]:
     token = os.getenv("GITHUB_TOKEN")
     headers = {
@@ -201,6 +239,7 @@ def crawl_repositories(
             scan_result["repo"] = full_name
             scan_result["stars"] = repo.get("stargazers_count", 0)
             scan_result["size"] = repo.get("size", 0)
+            scan_result["fork"] = bool(repo.get("fork", False))
             scan_result["html_url"] = repo.get("html_url")
             scan_result["description"] = repo.get("description")
             scan_result["last_updated"] = (
@@ -211,6 +250,11 @@ def crawl_repositories(
         page += 1
 
     destination = Path(output_path) if output_path is not None else default_dataset_path()
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(results, indent=2), encoding="utf-8")
+    write_dataset(
+        destination,
+        results,
+        snapshot_year=current_index_year(),
+        query=resolved_query,
+        limit=limit,
+    )
     return results

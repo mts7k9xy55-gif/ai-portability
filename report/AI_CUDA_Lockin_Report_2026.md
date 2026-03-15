@@ -1,6 +1,6 @@
 # AI CUDA Lock-in Report 2026
 
-## 1. Top 20 Most Locked AI Repos
+## 1. Top 20 Most Locked Repositories
 
 | Repo | Stars | Lock-in | Portability |
 | --- | ---: | ---: | ---: |
@@ -25,7 +25,7 @@
 | gpustack/gpustack | 4640 | 0 | 100 |
 | huggingface/optimum | 3326 | 0 | 100 |
 
-## 2. Top 20 Most Portable AI Repos
+## 2. Top 20 Most Portable Repositories
 
 | Repo | Stars | Lock-in | Portability |
 | --- | ---: | ---: | ---: |
@@ -52,13 +52,17 @@
 
 ## 3. Summary Stats
 
+- Snapshot year: 2026
+- Query: `topic:inference stars:>500 language:python`
+- Requested limit: 25
+- Generated at: 2026-03-15T21:13:00+00:00
 - Repositories analyzed: 25
-- Average lock-in score: 1.16
-- Median lock-in score: 0.00
-- Average portability score: 98.84
-- Median portability score: 100.00
+- Average Lock-in Score: 1.16
+- Median Lock-in Score: 0.00
+- Average Portability Score: 98.84
+- Median Portability Score: 100.00
 
-## 4. Distribution
+## 4. Lock-in Distribution
 
 - 0-19: 25
 - 20-39: 0

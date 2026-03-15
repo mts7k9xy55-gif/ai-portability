@@ -57,24 +57,19 @@ AI Portability aims to provide a way to **measure this dependency**.
 CLI usage:
 
 ```bash
-ai-portability scan vllm-project/vllm
+ai-portability scan https://github.com/vllm-project/vllm
 ```
 
 Example output:
 
 ```text
-AI Portability Index: 34
-
-Lock-in signals:
-- torch.cuda
-- triton kernels
-- nccl
-
-Backend compatibility:
-CUDA ✓
-ROCm ✗
-TPU ✗
-CPU ✓
+Repository: vllm-project/vllm
+CUDA Lock-in Score: 4
+Portability Score: 96
+Signals:
+- torch_cuda: True
+- nccl: True
+- triton: True
 ```
 
 ---
@@ -114,7 +109,7 @@ ai-portability scan <repo>
 Example:
 
 ```bash
-ai-portability scan huggingface/diffusers
+ai-portability scan https://github.com/vllm-project/vllm
 ai-portability scan https://github.com/huggingface/diffusers
 ```
 
@@ -144,12 +139,26 @@ Generate the canonical yearly snapshot:
 ai-portability snapshot
 ```
 
+Or override the preset and sample size:
+
+```bash
+ai-portability snapshot --topic ai --limit 25 --clone-fallback
+```
+
 The canonical snapshot uses an inference-heavy benchmark query rather than a broad machine-learning query, so the resulting index is more relevant to CUDA lock-in discussions.
 
 This writes:
 
 - `datasets/ai_portability_index_2026.json`
 - `report/AI_CUDA_Lockin_Report_2026.md`
+
+The dataset stores top-level metadata:
+
+- `snapshot_year`
+- `query`
+- `limit`
+- `generated_at`
+- `repositories`
 
 Generate the markdown report:
 

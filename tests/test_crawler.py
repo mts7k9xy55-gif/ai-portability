@@ -69,9 +69,11 @@ def test_crawl_repositories_paginates_until_limit(
 
     output = tmp_path / "dataset.json"
     result = crawler.crawl_repositories(limit=2, output_path=output, max_repo_size=200000)
+    payload = json.loads(output.read_text(encoding="utf-8"))
 
     assert [row["repo"] for row in result] == ["org/one", "org/two"]
-    assert json.loads(output.read_text(encoding="utf-8"))[1]["stars"] == 20
+    assert payload["limit"] == 2
+    assert payload["repositories"][1]["stars"] == 20
 
 
 def test_resolve_query_prefers_explicit_query() -> None:
@@ -118,6 +120,7 @@ def test_crawl_repositories_includes_last_updated_and_query(
                 "description": "one",
                 "default_branch": "main",
                 "pushed_at": "2026-03-01T10:00:00Z",
+                "fork": True,
             }
         ]
 
@@ -145,9 +148,15 @@ def test_crawl_repositories_includes_last_updated_and_query(
     result = crawler.crawl_repositories(
         limit=1, output_path=output, topic="llm", max_repo_size=200000
     )
+    payload = json.loads(output.read_text(encoding="utf-8"))
 
     assert result[0]["last_updated"] == "2026-03-01"
+    assert result[0]["fork"] is True
     assert result[0]["query"] == crawler.TOPIC_QUERIES["llm"]
+    assert payload["snapshot_year"] == crawler.current_index_year()
+    assert payload["query"] == crawler.TOPIC_QUERIES["llm"]
+    assert payload["limit"] == 1
+    assert payload["generated_at"]
 
 
 def test_crawl_repositories_falls_back_to_clone_on_rate_limit(
@@ -191,3 +200,13 @@ def test_crawl_repositories_falls_back_to_clone_on_rate_limit(
     result = crawler.crawl_repositories(limit=1, output_path=output)
 
     assert result[0]["scan_mode"] == "clone"
+
+
+def test_load_dataset_supports_legacy_list(tmp_path: Path) -> None:
+    dataset = tmp_path / "legacy.json"
+    dataset.write_text('[{"repo":"org/one","lockin_score":1,"portability_score":99}]', encoding="utf-8")
+
+    metadata, repositories = crawler.load_dataset(dataset)
+
+    assert metadata == {}
+    assert repositories[0]["repo"] == "org/one"

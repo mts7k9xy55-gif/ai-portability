@@ -85,6 +85,17 @@ def crawl_command(
 
 @app.command("snapshot")
 def snapshot_command(
+    limit: int = typer.Option(25, min=1, max=100, help="Number of repos in the snapshot."),
+    query: str | None = typer.Option(
+        None,
+        "--query",
+        help="Raw GitHub repository search query for the snapshot.",
+    ),
+    topic: str = typer.Option(
+        "benchmark",
+        "--topic",
+        help=f"Topic preset ({', '.join(sorted(TOPIC_QUERIES))}).",
+    ),
     output: Path = typer.Option(
         default_dataset_path(),
         "--output",
@@ -103,11 +114,12 @@ def snapshot_command(
 ) -> None:
     """Generate the canonical yearly AI Portability Index snapshot."""
     results = crawl_repositories(
-        limit=25,
+        limit=limit,
         output_path=output,
         max_repo_size=200_000,
         clone_fallback=clone_fallback,
-        topic="benchmark",
+        query=query,
+        topic=topic,
     )
     destination = generate_report(dataset_path=output, output_path=report_output)
     typer.echo(f"Scanned {len(results)} repositories.")
