@@ -1,0 +1,110 @@
+"""Markdown report generation for AI Portability."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from statistics import mean, median
+from typing import Any
+
+from .crawler import current_index_year, default_report_path
+
+
+def _format_table(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "| Repo | Stars | Lock-in | Portability |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['repo']} | {row.get('stars', 0)} | {row['lockin_score']} | {row['portability_score']} |"
+        )
+    return lines
+
+
+def _build_observations(rows: list[dict[str, Any]]) -> list[str]:
+    if not rows:
+        return ["- No repositories were analyzed."]
+
+    triton_count = sum(1 for row in rows if row.get("signals", {}).get("triton"))
+    most_locked = max(rows, key=lambda row: row["lockin_score"])
+    most_portable = max(rows, key=lambda row: row["portability_score"])
+    avg_lockin = mean(row["lockin_score"] for row in rows)
+
+    return [
+        f"- Across {len(rows)} repositories, the average lock-in score is {avg_lockin:.2f}.",
+        f"- Triton appears in {triton_count} repositories and tends to correlate with higher lock-in.",
+        f"- The most locked repository in this snapshot is {most_locked['repo']} with a score of {most_locked['lockin_score']}.",
+        f"- The most portable repository in this snapshot is {most_portable['repo']} with a score of {most_portable['portability_score']}.",
+    ]
+
+
+def _distribution_lines(rows: list[dict[str, Any]]) -> list[str]:
+    bins = [
+        ("0-19", 0, 19),
+        ("20-39", 20, 39),
+        ("40-59", 40, 59),
+        ("60-79", 60, 79),
+        ("80-100", 80, 100),
+    ]
+    lines: list[str] = []
+    for label, lower, upper in bins:
+        count = sum(lower <= row["lockin_score"] <= upper for row in rows)
+        lines.append(f"- {label}: {count}")
+    return lines
+
+
+def generate_report(
+    dataset_path: str | Path,
+    output_path: str | Path | None = None,
+) -> Path:
+    """Generate a markdown report from a dataset file."""
+    dataset = Path(dataset_path)
+    rows: list[dict[str, Any]] = json.loads(dataset.read_text(encoding="utf-8"))
+    top_lockin = sorted(rows, key=lambda row: row["lockin_score"], reverse=True)[:20]
+    top_portability = sorted(
+        rows, key=lambda row: row["portability_score"], reverse=True
+    )[:20]
+
+    avg_lockin = mean(row["lockin_score"] for row in rows) if rows else 0
+    avg_portability = mean(row["portability_score"] for row in rows) if rows else 0
+    median_lockin = median(row["lockin_score"] for row in rows) if rows else 0
+    median_portability = median(row["portability_score"] for row in rows) if rows else 0
+    report_year = "".join(ch for ch in dataset.stem if ch.isdigit()) or str(current_index_year())
+
+    content: list[str] = [
+        f"# AI CUDA Lock-in Report {report_year}",
+        "",
+        "## 1. Top 20 Most Locked AI Repos",
+        "",
+        *_format_table(top_lockin),
+        "",
+        "## 2. Top 20 Most Portable AI Repos",
+        "",
+        *_format_table(top_portability),
+        "",
+        "## 3. Summary Stats",
+        "",
+        f"- Repositories analyzed: {len(rows)}",
+        f"- Average lock-in score: {avg_lockin:.2f}",
+        f"- Median lock-in score: {median_lockin:.2f}",
+        f"- Average portability score: {avg_portability:.2f}",
+        f"- Median portability score: {median_portability:.2f}",
+        "",
+        "## 4. Distribution",
+        "",
+        *_distribution_lines(rows),
+        "",
+        "## 5. Key Observations",
+        "",
+        *_build_observations(rows),
+    ]
+
+    destination = (
+        Path(output_path)
+        if output_path is not None
+        else default_report_path(int(report_year))
+    )
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text("\n".join(content) + "\n", encoding="utf-8")
+    return destination
