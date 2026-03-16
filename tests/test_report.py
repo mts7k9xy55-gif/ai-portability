@@ -7,8 +7,8 @@ def test_generate_report_includes_median_and_distribution(tmp_path: Path) -> Non
     dataset = tmp_path / "ai_portability_index_2026.json"
     dataset.write_text(
         '{"snapshot_year": 2026, "query": "topic:ai", "limit": 2, "scan_mode": "manifest+clone", "generated_at": "2026-03-16T00:00:00+00:00",'
-        '"repositories": [{"repo":"a","stars":10,"lockin_score":10,"portability_score":90,"signals":{"triton":false}},'
-        '{"repo":"b","stars":20,"lockin_score":70,"portability_score":30,"signals":{"triton":true}}]}',
+        '"repositories": [{"repo":"a","stars":10,"lockin_score":10,"portability_score":90,"signals":{"triton":false},"backend_signals":{"rocm":true,"metal":false,"oneapi":false,"cpu_only":true}},'
+        '{"repo":"b","stars":20,"lockin_score":70,"portability_score":30,"signals":{"triton":true},"backend_signals":{"rocm":false,"metal":true,"oneapi":true,"cpu_only":false}}]}',
         encoding="utf-8",
     )
 
@@ -25,4 +25,5 @@ def test_generate_report_includes_median_and_distribution(tmp_path: Path) -> Non
     assert "- Query: `topic:ai`" in text
     assert "- Scan mode: `manifest+clone`" in text
     assert "- Triton appears in 1 repositories, NCCL appears in 0, and custom CUDA kernels appear in 0." in text
+    assert "- Alternate backend signals appear in 1 ROCm repos, 1 Metal repos, 1 oneAPI repos, and 1 CPU-oriented repos." in text
     assert "- However, portability varies significantly across the benchmark set, with a, b landing at the portable end." in text
