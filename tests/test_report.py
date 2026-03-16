@@ -24,4 +24,5 @@ def test_generate_report_includes_median_and_distribution(tmp_path: Path) -> Non
     assert "- 60-79: 1" in text
     assert "- Query: `topic:ai`" in text
     assert "- Scan mode: `manifest+clone`" in text
-    assert "- However, portability varies significantly across the benchmark set." in text
+    assert "- Triton appears in 1 repositories, NCCL appears in 0, and custom CUDA kernels appear in 0." in text
+    assert "- However, portability varies significantly across the benchmark set, with a, b landing at the portable end." in text

@@ -36,11 +36,11 @@ https://github.com/mts7k9xy55-gif/ai-portability
 Current snapshot:
 
 - 25 AI / inference repos analyzed
-- average lock-in score: 1.16
-- median lock-in score: 0.00
-- vllm appears with a lock-in score of 4
+- average lock-in score: 48.24
+- median lock-in score: 43.00
+- top locked repos: `vllm-project/vllm (98)`, `sgl-project/sglang (97)`, `NVIDIA/TensorRT-LLM (94)`
 
-The current methodology is intentionally simple: scan repo manifests and source files for CUDA-linked signals such as `torch.cuda`, `cudnn`, `nccl`, `triton`, `cudaMalloc`, and `cudaMemcpy`, then compute a portability score from that signal set.
+The current methodology scans full repositories and looks for CUDA-linked signals such as `torch.cuda`, `cudnn`, `nccl`, `triton`, `cudaMalloc`, `cudaMemcpy`, and custom CUDA kernels, then computes a lock-in score from signal counts.
 
 This is not meant to be the final word on portability. The goal is to create a benchmark and a dataset people can argue with, improve, and extend over time.
 
@@ -54,14 +54,14 @@ It scans GitHub repos, computes a lock-in score + portability score, and generat
 
 Current snapshot:
 - 25 repos
-- avg lock-in: 1.16
-- median: 0
-- `vllm-project/vllm`: 4
+- avg lock-in: 48.24
+- median: 43
+- top locked: `vllm` 98, `sglang` 97, `TensorRT-LLM` 94
 
 Repo: https://github.com/mts7k9xy55-gif/ai-portability
 Report: https://github.com/mts7k9xy55-gif/ai-portability/blob/main/report/AI_CUDA_Lockin_Report_2026.md
 
-The interesting part is not the number itself yet. It is making hardware lock-in measurable and debatable.
+The interesting part is making hardware lock-in measurable enough to benchmark, argue about, and improve over time.
 
 ## Reddit
 
@@ -90,11 +90,11 @@ https://github.com/mts7k9xy55-gif/ai-portability
 This is the current snapshot:
 
 - 25 repos analyzed
-- average lock-in: 1.16
-- median lock-in: 0
-- `vllm-project/vllm` shows up with a score of 4
+- average lock-in: 48.24
+- median lock-in: 43
+- top locked repos: `vllm-project/vllm (98)`, `sgl-project/sglang (97)`, `NVIDIA/TensorRT-LLM (94)`
 
-Methodology is deliberately simple right now: scan manifests and source files for signals like `torch.cuda`, `cupy`, `cudnn`, `nccl`, `triton`, `cudaMalloc`, and `cudaMemcpy`, then aggregate them into a score.
+Methodology is still simple, but it is now based on full repo scans rather than only manifests. The scanner looks for signals like `torch.cuda`, `cupy`, `cudnn`, `nccl`, `triton`, `cudaMalloc`, `cudaMemcpy`, and custom CUDA kernels, then aggregates signal counts into a lock-in score.
 
 The point is less "this score is perfect" and more "can we make hardware lock-in visible enough to benchmark over time?"
 

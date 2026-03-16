@@ -75,7 +75,8 @@
 
 - We analyzed 25 repositories with scan mode `clone`.
 - The average CUDA lock-in score is 48.24.
-- Triton appears in 20 repositories and tends to correlate with higher lock-in.
-- However, portability varies significantly across the benchmark set.
+- Triton appears in 20 repositories, NCCL appears in 18, and custom CUDA kernels appear in 13.
+- The highest lock-in cluster in this snapshot is vllm-project/vllm, sgl-project/sglang, NVIDIA/TensorRT-LLM.
+- However, portability varies significantly across the benchmark set, with neuralmagic/deepsparse, deepspeedai/DeepSpeed-MII, dstackai/dstack landing at the portable end.
 - The most locked repository in this snapshot is vllm-project/vllm with a score of 98.
 - The most portable repository in this snapshot is neuralmagic/deepsparse with a score of 94.
