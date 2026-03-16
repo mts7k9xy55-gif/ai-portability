@@ -184,15 +184,25 @@ def test_crawl_repositories_falls_back_to_clone_on_rate_limit(
     monkeypatch.setattr(crawler, "fetch_repo_file_texts", lambda repo, branch=None: None)
     monkeypatch.setattr(
         crawler,
-        "scan_repository",
-        lambda repo, file_texts=None: {
+        "scan_repository_with_timeout",
+        lambda repo, file_texts=None, timeout_seconds=crawler.CLONE_SCAN_TIMEOUT_SECONDS: {
             "repo": repo,
             "source": f"github:{repo}",
-            "scan_mode": "clone" if file_texts is None else "manifest",
+            "scan_mode": "clone",
             "signals": {},
             "signal_counts": {},
+            "backend_signals": {},
+            "backend_signal_counts": {},
+            "backend_compatibility": {
+                "cuda": False,
+                "rocm": False,
+                "metal": False,
+                "oneapi": False,
+                "cpu": False,
+            },
             "detected_dependencies": [],
             "evidence": {},
+            "backend_evidence": {},
             "lockin_score": 0,
             "portability_score": 100,
         },
@@ -223,15 +233,25 @@ def test_crawl_benchmark_uses_curated_repositories(monkeypatch, tmp_path: Path) 
     )
     monkeypatch.setattr(
         crawler,
-        "scan_repository",
-        lambda repo, file_texts=None: {
+        "scan_repository_with_timeout",
+        lambda repo, file_texts=None, timeout_seconds=crawler.CLONE_SCAN_TIMEOUT_SECONDS: {
             "repo": repo,
             "source": f"github:{repo}",
             "scan_mode": "clone",
             "signals": {"triton": True},
             "signal_counts": {"triton": 2},
+            "backend_signals": {},
+            "backend_signal_counts": {},
+            "backend_compatibility": {
+                "cuda": True,
+                "rocm": False,
+                "metal": False,
+                "oneapi": False,
+                "cpu": False,
+            },
             "detected_dependencies": ["triton"],
             "evidence": {"triton": ["kernel.py"]},
+            "backend_evidence": {},
             "lockin_score": 3,
             "portability_score": 97,
         },
@@ -247,6 +267,71 @@ def test_crawl_benchmark_uses_curated_repositories(monkeypatch, tmp_path: Path) 
     assert payload["query"] == crawler.CURATED_BENCHMARK_QUERY
     assert payload["scan_mode"] == "clone"
     assert payload["repositories"][0]["stars"] == 123
+
+
+def test_crawl_benchmark_falls_back_to_manifest_on_timeout(
+    monkeypatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr(
+        crawler,
+        "fetch_curated_benchmark_repositories",
+        lambda limit=25: [
+            {
+                "full_name": "org/timeout",
+                "size": 10,
+                "stargazers_count": 50,
+                "fork": False,
+                "html_url": "https://github.com/org/timeout",
+                "description": "timeout",
+                "default_branch": "main",
+                "pushed_at": "2026-03-10T10:00:00Z",
+            }
+        ],
+    )
+    monkeypatch.setattr(
+        crawler,
+        "fetch_repo_file_texts",
+        lambda repo, branch=None, file_paths=crawler.DEFAULT_FILE_PATHS: {
+            "setup.py": "from torch.utils.cpp_extension import CUDAExtension\n"
+        },
+    )
+
+    def fake_scan_with_timeout(repo: str, *, file_texts=None, timeout_seconds=180):
+        if file_texts is None:
+            raise crawler.ScanTimeoutError("timed out")
+        return {
+            "repo": repo,
+            "source": f"github:{repo}",
+            "scan_mode": "manifest",
+            "signals": {"cuda_build": True},
+            "signal_counts": {"cuda_build": 1},
+            "backend_signals": {},
+            "backend_signal_counts": {},
+            "backend_compatibility": {
+                "cuda": True,
+                "rocm": False,
+                "metal": False,
+                "oneapi": False,
+                "cpu": False,
+            },
+            "detected_dependencies": ["cuda_build"],
+            "evidence": {"cuda_build": ["setup.py"]},
+            "backend_evidence": {},
+            "lockin_score": 8,
+            "portability_score": 92,
+        }
+
+    monkeypatch.setattr(crawler, "scan_repository_with_timeout", fake_scan_with_timeout)
+    monkeypatch.setattr(crawler, "scan_repository", lambda repo, file_texts=None: fake_scan_with_timeout(repo, file_texts=file_texts))
+
+    output = tmp_path / "benchmark-timeout.json"
+    result = crawler.crawl_repositories(
+        limit=1, output_path=output, topic="benchmark", clone_fallback=True
+    )
+    payload = json.loads(output.read_text(encoding="utf-8"))
+
+    assert result[0]["scan_mode"] == "manifest"
+    assert payload["scan_mode"] == "manifest"
 
 
 def test_load_dataset_supports_legacy_list(tmp_path: Path) -> None:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import json
+import multiprocessing as mp
 import os
 from datetime import datetime, timezone
 from pathlib import Path
@@ -62,6 +63,20 @@ DEFAULT_FILE_PATHS = (
     "requirements/base.txt",
     "requirements/dev.txt",
 )
+CLONE_SCAN_TIMEOUT_SECONDS = 180
+
+
+class ScanTimeoutError(RuntimeError):
+    """Raised when a repository scan exceeds the allowed wall time."""
+
+
+def _scan_repository_worker(
+    repo: str, file_texts: dict[str, str] | None, queue: mp.Queue
+) -> None:
+    try:
+        queue.put(("ok", scan_repository(repo, file_texts=file_texts)))
+    except Exception as exc:  # pragma: no cover - returned to parent process
+        queue.put(("error", f"{type(exc).__name__}: {exc}"))
 
 
 def load_dataset(path: str | Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
@@ -253,6 +268,36 @@ def fetch_repo_file_texts(
     return texts
 
 
+def scan_repository_with_timeout(
+    repo: str,
+    *,
+    file_texts: dict[str, str] | None = None,
+    timeout_seconds: int = CLONE_SCAN_TIMEOUT_SECONDS,
+) -> dict[str, Any]:
+    """Run a repository scan with a hard wall-clock timeout."""
+    ctx = mp.get_context("spawn")
+    queue: mp.Queue = ctx.Queue()
+    process = ctx.Process(
+        target=_scan_repository_worker,
+        args=(repo, file_texts, queue),
+    )
+    process.start()
+    try:
+        process.join(timeout_seconds)
+        if process.is_alive():
+            process.terminate()
+            process.join()
+            raise ScanTimeoutError("Repository scan timed out.")
+        if queue.empty():
+            raise RuntimeError(f"Repository scan exited without a result: {repo}")
+        status, payload = queue.get()
+        if status == "ok":
+            return payload
+        raise RuntimeError(payload)
+    finally:
+        queue.close()
+
+
 def crawl_repositories(
     limit: int = 25,
     output_path: str | Path | None = None,
@@ -269,14 +314,19 @@ def crawl_repositories(
         for repo in repos:
             full_name = repo["full_name"]
             if clone_fallback:
-                scan_result = scan_repository(full_name)
+                try:
+                    scan_result = scan_repository_with_timeout(full_name)
+                except ScanTimeoutError:
+                    branch = repo.get("default_branch")
+                    file_texts = fetch_repo_file_texts(full_name, branch=branch)
+                    scan_result = scan_repository(
+                        full_name, file_texts=file_texts or {}
+                    )
             else:
                 branch = repo.get("default_branch")
                 file_texts = fetch_repo_file_texts(full_name, branch=branch)
                 if file_texts:
                     scan_result = scan_repository(full_name, file_texts=file_texts)
-                elif clone_fallback or file_texts is None:
-                    scan_result = scan_repository(full_name)
                 else:
                     scan_result = scan_repository(full_name, file_texts={})
 
@@ -320,7 +370,10 @@ def crawl_repositories(
                 if file_texts:
                     scan_result = scan_repository(full_name, file_texts=file_texts)
                 elif clone_fallback or file_texts is None:
-                    scan_result = scan_repository(full_name)
+                    try:
+                        scan_result = scan_repository_with_timeout(full_name)
+                    except ScanTimeoutError:
+                        scan_result = scan_repository(full_name, file_texts={})
                 else:
                     scan_result = scan_repository(full_name, file_texts={})
 
