@@ -32,6 +32,10 @@ def _build_observations(
     custom_kernel_count = sum(
         1 for row in rows if row.get("signals", {}).get("custom_kernel")
     )
+    rocm_count = sum(1 for row in rows if row.get("backend_signals", {}).get("rocm"))
+    metal_count = sum(1 for row in rows if row.get("backend_signals", {}).get("metal"))
+    oneapi_count = sum(1 for row in rows if row.get("backend_signals", {}).get("oneapi"))
+    cpu_count = sum(1 for row in rows if row.get("backend_signals", {}).get("cpu_only"))
     most_locked = max(rows, key=lambda row: row["lockin_score"])
     most_portable = max(rows, key=lambda row: row["portability_score"])
     avg_lockin = mean(row["lockin_score"] for row in rows)
@@ -47,6 +51,7 @@ def _build_observations(
         f"- We analyzed {len(rows)} repositories with scan mode `{scan_mode}`.",
         f"- The average CUDA lock-in score is {avg_lockin:.2f}.",
         f"- Triton appears in {triton_count} repositories, NCCL appears in {nccl_count}, and custom CUDA kernels appear in {custom_kernel_count}.",
+        f"- Alternate backend signals appear in {rocm_count} ROCm repos, {metal_count} Metal repos, {oneapi_count} oneAPI repos, and {cpu_count} CPU-oriented repos.",
         f"- The highest lock-in cluster in this snapshot is {locked_names}.",
         f"- However, portability varies significantly across the benchmark set, with {portable_names} landing at the portable end.",
         f"- The most locked repository in this snapshot is {most_locked['repo']} with a score of {most_locked['lockin_score']}.",

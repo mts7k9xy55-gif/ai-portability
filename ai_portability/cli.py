@@ -35,6 +35,10 @@ def scan_command(
     for key, value in result["signals"].items():
         if value:
             typer.echo(f"- {key}: {value}")
+    if "backend_compatibility" in result:
+        typer.echo("Backend Compatibility:")
+        for key, value in result["backend_compatibility"].items():
+            typer.echo(f"- {key}: {value}")
     if json_output is not None:
         json_output.parent.mkdir(parents=True, exist_ok=True)
         json_output.write_text(json.dumps(result, indent=2), encoding="utf-8")

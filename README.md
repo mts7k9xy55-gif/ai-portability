@@ -75,6 +75,13 @@ Signals:
 - cuda_malloc: True
 - cuda_memcpy: True
 - custom_kernel: True
+- cuda_build: True
+Backend Compatibility:
+- cuda: True
+- rocm: True
+- metal: False
+- oneapi: True
+- cpu: True
 ```
 
 ---
@@ -82,6 +89,7 @@ Signals:
 # Features
 
 - CUDA dependency detection
+- Alternate backend signal detection
 - Hardware portability scoring
 - GitHub repository scanning
 - AI Portability Index dataset

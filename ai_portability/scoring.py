@@ -13,6 +13,7 @@ MAX_SIGNAL_CONTRIBUTIONS: dict[str, int] = {
     "triton": 18,
     "cuda_malloc": 10,
     "cuda_memcpy": 10,
+    "cuda_build": 8,
     "custom_kernel": 20,
 }
 
@@ -24,6 +25,7 @@ SATURATION_COUNTS: dict[str, int] = {
     "triton": 30,
     "cuda_malloc": 10,
     "cuda_memcpy": 10,
+    "cuda_build": 10,
     "custom_kernel": 20,
 }
 
